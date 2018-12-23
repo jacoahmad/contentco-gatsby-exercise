@@ -1,22 +1,15 @@
 const path = require('path')
 
-const TECH_IN_ASIA_POSTS = 'techInAsia__posts'
-
-exports.onCreateNode = ({ node, getNode }) => {
-  if (node.internal.type === TECH_IN_ASIA_POSTS) {
-    // const fileNode = getNode(node.parent)
-    // console.log(`\n`, fileNode.relativePath)
-  }
-}
-
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
   const ArticlePageTemplate = path.resolve(
     'src/templates/techinasia/TechInAsiaTemplate.js'
   )
-  // TODO: Create Template for REST API Articles
   graphql(`
     {
+      site {
+        pathPrefix
+      }
       allTechInAsiaPosts {
         edges {
           node {
@@ -61,6 +54,7 @@ exports.createPages = ({ actions, graphql }) => {
       if (node.posts != null && node.id !== 'dummy') {
         node.posts.forEach(post => {
           createPage({
+            pathPrefix: result.data.site.pathPrefix,
             path: `/article/${post.slug}`,
             component: ArticlePageTemplate,
             context: {

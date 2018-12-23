@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
+import { graphql, navigate } from 'gatsby'
 import Layout from '../components/Layout/Layout'
 import Article from '../components/Article/Article'
 import moment from 'moment'
@@ -14,7 +14,7 @@ class ArticleListPage extends React.Component {
     sortBy: SORT.DATE_ASCENDING.value,
   }
   handleClickArticle = slug => () => {
-    return this.props.navigate(`/article/${slug}`)
+    return navigate(`/article/${slug}`)
   }
   handleSortChange = e => this.setState({ sortBy: e.target.value })
   renderListItem = (posts, key) => {

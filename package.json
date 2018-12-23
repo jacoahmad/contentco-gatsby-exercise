@@ -31,6 +31,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "start": "npm run develop",
@@ -38,6 +39,7 @@
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "marlint": "^6.5.4",
     "prettier": "^1.15.2"
   },
